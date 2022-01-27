@@ -10,7 +10,7 @@ ARG PYINSTALLER_VERSION=4.8
 RUN set -x \
     && dpkg --add-architecture i386 \
     && apt-get update -qy \
-    && apt-get install gpg-agent -y \
+    && apt-get install gpg-agent rename -y \
     && apt-get install --no-install-recommends -qfy apt-transport-https software-properties-common wget \
     && wget -nv https://dl.winehq.org/wine-builds/winehq.key \
     && apt-key add winehq.key \
@@ -51,7 +51,7 @@ RUN set -x \
     && echo 'ftype PythonScript=c:\Python\python.exe "%1" %*' | wine cmd \
     && while pgrep wineserver >/dev/null; do echo "Waiting for wineserver"; sleep 1; done \
     && chmod +x /usr/bin/python /usr/bin/easy_install /usr/bin/pip /usr/bin/pyinstaller /usr/bin/pyupdater \
-    && (pip install -U pip || true) \
+    && (pip install --user pip || true) \
     && rm -rf /tmp/.wine-*
 
 ENV W_DRIVE_C=/wine/drive_c
