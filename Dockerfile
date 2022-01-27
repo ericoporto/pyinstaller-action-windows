@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ARG WINE_VERSION=winehq-staging
+ARG WINE_VERSION=winehq-stable
 ARG PYTHON_VERSION=3.9.9
 ARG PYINSTALLER_VERSION=4.8
 
@@ -10,6 +10,7 @@ ARG PYINSTALLER_VERSION=4.8
 RUN set -x \
     && dpkg --add-architecture i386 \
     && apt-get update -qy \
+    && apt-get install gpg-agent -y \
     && apt-get install --no-install-recommends -qfy apt-transport-https software-properties-common wget \
     && wget -nv https://dl.winehq.org/wine-builds/winehq.key \
     && apt-key add winehq.key \
