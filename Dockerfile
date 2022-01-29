@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND noninteractive
 
 ARG WINE_VERSION=winehq-stable
-ARG PYTHON_VERSION=3.8.12
+ARG PYTHON_VERSION=3.8.10
 ARG PYINSTALLER_VERSION=4.8
 
 # we need wine for this all to work, so we'll use the PPA
