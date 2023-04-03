@@ -54,7 +54,7 @@ pyinstaller --clean -y --dist ./dist/windows --workpath /tmp $SPEC_FILE
 chown -R --reference=. ./dist/windows
 
 if [ -f ${EXE_FILE_INFO} ]; then
-   chown --reference=. {EXE_FILE_INFO}
+   chown --reference=. ${EXE_FILE_INFO}
    EXE_FILE=$(ls ./dist/windows/*.exe| head -1)
    pyi-set_version ${EXE_FILE_INFO} ${EXE_FILE}
 fi
