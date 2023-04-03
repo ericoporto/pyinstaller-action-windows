@@ -25,6 +25,10 @@ inputs:
     description: 'Specify a file path for requirements.txt file'
     required: False
     default: "requirements.txt"
+  exe_file_info:
+    description: 'Specify a file info for use with the generated exe file'
+    required: False
+    default: ""
 outputs:
   output:
     description: 'The output of PyInstaller'
@@ -38,3 +42,4 @@ runs:
     - ${{ inputs.pypi_index_url }}
     - ${{ inputs.spec }}
     - ${{ inputs.requirements }}
+    - ${{ inputs.exe_file_info }}
