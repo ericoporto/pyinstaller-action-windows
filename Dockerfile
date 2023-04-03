@@ -1,10 +1,10 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
 ARG WINE_VERSION=winehq-stable
 ARG PYTHON_VERSION=3.8.10
-ARG PYINSTALLER_VERSION=4.8
+ARG PYINSTALLER_VERSION=5.9
 
 # we need wine for this all to work, so we'll use the PPA
 RUN set -x \
@@ -46,6 +46,8 @@ RUN set -x \
     && echo 'wine '\''C:\Python\Scripts\easy_install.exe'\'' "$@"' > /usr/bin/easy_install \
     && echo 'wine '\''C:\Python\Scripts\pip.exe'\'' "$@"' > /usr/bin/pip \
     && echo 'wine '\''C:\Python\Scripts\pyinstaller.exe'\'' "$@"' > /usr/bin/pyinstaller \
+    && echo 'wine '\''C:\Python\Scripts\pyi-grab_version.exe'\'' "$@"' > /usr/bin/pyi-grab_version \
+    && echo 'wine '\''C:\Python\Scripts\pyi-set_version.exe'\'' "$@"' > /usr/bin/pyi-set_version \
     && echo 'wine '\''C:\Python\Scripts\pyupdater.exe'\'' "$@"' > /usr/bin/pyupdater \
     && echo 'assoc .py=PythonScript' | wine cmd \
     && echo 'ftype PythonScript=c:\Python\python.exe "%1" %*' | wine cmd \
