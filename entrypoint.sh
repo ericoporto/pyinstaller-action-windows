@@ -19,6 +19,8 @@ WORKDIR=${SRCDIR:-/src}
 
 SPEC_FILE=${4:-*.spec}
 
+EXE_FILE_INFO=${6:-*.txt}
+
 python -m pip install --upgrade pip wheel setuptools
 
 #
@@ -50,6 +52,12 @@ fi # [ -f $5 ]
 # if [[ "$@" == "" ]]; then
 pyinstaller --clean -y --dist ./dist/windows --workpath /tmp $SPEC_FILE
 chown -R --reference=. ./dist/windows
+
+if [ -f ${EXE_FILE_INFO} ]; then
+   EXE_FILE=$(ls ./dist/windows/*.exe| head -1)
+   pyi-set_version ${EXE_FILE_INFO} ${EXE_FILE}
+fi
+
 # else
     # sh -c "$@"
 # fi # [[ "$@" == "" ]]
