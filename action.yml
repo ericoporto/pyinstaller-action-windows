@@ -29,6 +29,10 @@ inputs:
     description: 'Specify a file info for use with the generated exe file'
     required: False
     default: ""
+  exe_file:
+    description: 'Specify name of exe file to set into'
+    required: False
+    default: ""
 outputs:
   output:
     description: 'The output of PyInstaller'
@@ -43,3 +47,4 @@ runs:
     - ${{ inputs.spec }}
     - ${{ inputs.requirements }}
     - ${{ inputs.exe_file_info }}
+    - ${{ inputs.exe_file }}
