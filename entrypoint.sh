@@ -21,6 +21,8 @@ SPEC_FILE=${4:-*.spec}
 
 EXE_FILE_INFO=${6:-*.txt}
 
+EXE_FILE=${7:-*.exe}
+
 python -m pip install --upgrade pip wheel setuptools
 
 #
@@ -55,8 +57,8 @@ chown -R --reference=. ./dist/windows
 
 if [ -f ${EXE_FILE_INFO} ]; then
    chown --reference=. ${EXE_FILE_INFO}
-   EXE_FILE=$(ls ./dist/windows/*.exe| head -1)
-   pyi-set_version ${EXE_FILE_INFO} ${EXE_FILE}
+   EEXE_FILE=./dist/windows/${EXE_FILE}
+   pyi-set_version ${EXE_FILE_INFO} ${EEXE_FILE}
 fi
 
 # else
